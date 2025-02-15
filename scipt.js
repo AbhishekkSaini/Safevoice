@@ -356,5 +356,54 @@ document.querySelector(this.getAttribute('href')).scrollIntoView({
 });
 
 
+
           console.log('Page complete');
+          document.addEventListener("DOMContentLoaded", function () {
+            console.log("JavaScript Loaded ✅");
+        
+            const loginBtn = document.getElementById("loginBtn");
+            const signupBtn = document.getElementById("signupBtn");
+            const logoutBtn = document.getElementById("logoutBtn");
+        
+            if (!loginBtn || !signupBtn || !logoutBtn) {
+                console.error("❌ Login, Signup, or Logout button is missing!");
+                return;
+            } else {
+                console.log("✅ Login, Signup, and Logout buttons found!");
+            }
+        
+            let isLoggedIn = false;
+        
+            function updateAuthUI() {
+                if (isLoggedIn) {
+                    loginBtn.classList.add("hidden");
+                    signupBtn.classList.add("hidden");
+                    logoutBtn.classList.remove("hidden");
+                } else {
+                    loginBtn.classList.remove("hidden");
+                    signupBtn.classList.remove("hidden");
+                    logoutBtn.classList.add("hidden");
+                }
+            }
+        
+            loginBtn.addEventListener("click", function () {
+                console.log("🔄 Redirecting to Login Page...");
+                window.location.href = "login.html"; 
+            });
+        
+            signupBtn.addEventListener("click", function () {
+                console.log("🔄 Redirecting to Signup Page...");
+                window.location.href = "signup.html"; 
+            });
+        
+            logoutBtn.addEventListener("click", function () {
+                console.log("🔄 Logging out...");
+                isLoggedIn = false;
+                updateAuthUI();
+            });
+        
+            updateAuthUI();
+        });
+        
+
       

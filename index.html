@@ -14,6 +14,7 @@
 
     <!-- Core CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js"></script>
     <script>
       tailwind.config = {
         theme: {
@@ -144,7 +145,7 @@
 
     <!-- Utilities and Components -->
     <script defer="" src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.min.js"></script>
-    <script defer="" src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.45.1/apexcharts.min.js"></script>
+    </script>
     
     <!-- Optimized Font Loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -349,6 +350,7 @@ height: 0;
 
     <!-- {bodyScripts} -->
 
+
  
 <element id="503adc3e-a2e2-4562-bdce-e7aaab51fdbd" data-section-id="503adc3e-a2e2-4562-bdce-e7aaab51fdbd">
 
@@ -363,26 +365,32 @@ height: 0;
           <span class="text-2xl font-bold ml-1 text-red-600" style="font-family: 'Rajdhani', sans-serif;">Voice</span>
         </a>
       </div>
-
+    
       <!-- Desktop Menu -->
-      <div class="hidden md:block">
-        <div class="ml-10 flex items-baseline space-x-6">
-          <a href="#featuredStories" class="hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Stories</a>
-          <a href="#howItWorks" class="hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">How It Works</a>
-          <a href="#categories" class="hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Categories</a>
-          <a href="#communityGuidelines" class="hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Guidelines</a>
-          <button id="sosBtn" class="relative bg-red-600 hover:bg-red-700 px-6 py-3 rounded-full text-white font-bold text-lg transition-all duration-300 animate__animated animate__pulse animate__infinite flex items-center gap-2 shadow-lg border-2 border-orange-200">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokelinecap="round" strokelinejoin="round" strokewidth="{2}" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
-            </svg>
-            SOS
-          </button>
-        </div>
-      </div>
+      <div class="hidden md:flex items-center space-x-6">
+        <a href="#featuredStories" class="hover:text-orange-600 px-3 py-2 text-sm font-medium">Stories</a>
+        <a href="#howItWorks" class="hover:text-orange-600 px-3 py-2 text-sm font-medium">How It Works</a>
+        <a href="#categories" class="hover:text-orange-600 px-3 py-2 text-sm font-medium">Categories</a>
+        <a href="#communityGuidelines" class="hover:text-orange-600 px-3 py-2 text-sm font-medium">Guidelines</a>
 
-      <!-- Mobile menu button -->
+        <!-- Authentication Buttons -->
+        <button id="loginBtn" class="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-md">Login</button>
+        <button id="signupBtn" class="bg-gray-200 hover:bg-gray-300 text-gray-900 px-4 py-2 rounded-md">Sign Up</button>
+        <button id="logoutBtn" class="hidden bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md">Logout</button>
+
+        <!-- SOS Button -->
+        <button id="sosBtn" class="relative bg-red-600 hover:bg-red-700 px-6 py-3 rounded-full text-white font-bold text-lg transition-all duration-300 animate__animated animate__pulse animate__infinite flex items-center gap-2 shadow-lg border-2 border-orange-200">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+          </svg>
+          SOS
+        </button>
+      </div>
+      
+
+      <!-- Mobile Menu -->
       <div class="md:hidden">
-        <button id="menuBtn" class="inline-flex items-center justify-center p-2 rounded-md hover:text-orange-600 hover:bg-orange-100 focus:outline-none">
+        <button id="menuBtn" class="p-2 rounded-md hover:text-orange-600 hover:bg-orange-100">
           <svg id="menuIcon" class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
@@ -391,7 +399,7 @@ height: 0;
     </div>
   </div>
 
-  <!-- Mobile menu -->
+  <!-- Mobile Menu -->
   <div id="mobileMenu" class="hidden md:hidden bg-orange-50 border-t border-orange-200">
     <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
       <a href="#featuredStories" class="block px-3 py-2 rounded-md text-base font-medium hover:text-orange-600 hover:bg-orange-100">Stories</a>
@@ -402,6 +410,7 @@ height: 0;
     </div>
   </div>
 </nav>
+
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap');
@@ -451,7 +460,7 @@ height: 0;
           <div class="text-center">
             
           <button class="bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 animate__animated animate__pulse animate__infinite border-2 border-orange-300" onclick="openStoryEditor()">
-            <a href="https://idyllic-marigold-33655a.netlify.app/">Share Your Story</a>
+            <a href="https://neon-licorice-c0ba9f.netlify.app/">Share Your Story</a>
             </button>
 
             <!-- Story Editor Modal -->
