@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <link rel="stylesheet" href="styles.css">
+    <script type="module" src="js/supabase-client.js"></script>
+    <script type="module" src="js/auth.js"></script>
 </head>
 <body class="font-sans bg-gradient-to-br from-slate-50 to-orange-50 min-h-screen flex items-center justify-center py-12">
     <div class="max-w-md w-full mx-4">
@@ -107,75 +109,24 @@
     <script>
         lucide.createIcons();
 
-        // Toggle password visibility
-        document.getElementById('togglePassword').addEventListener('click', function() {
-            const password = document.getElementById('password');
-            const icon = this.querySelector('i');
-            
-            if (password.type === 'password') {
-                password.type = 'text';
-                icon.setAttribute('data-lucide', 'eye-off');
-            } else {
-                password.type = 'password';
-                icon.setAttribute('data-lucide', 'eye');
+        // Toggle password visibility (moved to auth.js, but keeping basic functionality here)
+        document.addEventListener('DOMContentLoaded', () => {
+            const togglePassword = document.getElementById('togglePassword');
+            if (togglePassword) {
+                togglePassword.addEventListener('click', function() {
+                    const password = document.getElementById('password');
+                    const icon = this.querySelector('i');
+                    
+                    if (password.type === 'password') {
+                        password.type = 'text';
+                        icon.setAttribute('data-lucide', 'eye-off');
+                    } else {
+                        password.type = 'password';
+                        icon.setAttribute('data-lucide', 'eye');
+                    }
+                    lucide.createIcons();
+                });
             }
-            lucide.createIcons();
-        });
-
-        // Password validation
-        document.getElementById('password').addEventListener('input', function() {
-            const password = this.value;
-            const length = document.getElementById('length');
-            const uppercase = document.getElementById('uppercase');
-            const number = document.getElementById('number');
-
-            // Check length
-            if (password.length >= 8) {
-                length.innerHTML = '<i data-lucide="check" class="w-3 h-3 text-green-500 mr-1"></i><span class="text-green-500">8+ characters</span>';
-            } else {
-                length.innerHTML = '<i data-lucide="x" class="w-3 h-3 text-red-500 mr-1"></i><span class="text-red-500">8+ characters</span>';
-            }
-
-            // Check uppercase
-            if (/[A-Z]/.test(password)) {
-                uppercase.innerHTML = '<i data-lucide="check" class="w-3 h-3 text-green-500 mr-1"></i><span class="text-green-500">Uppercase</span>';
-            } else {
-                uppercase.innerHTML = '<i data-lucide="x" class="w-3 h-3 text-red-500 mr-1"></i><span class="text-red-500">Uppercase</span>';
-            }
-
-            // Check number
-            if (/\d/.test(password)) {
-                number.innerHTML = '<i data-lucide="check" class="w-3 h-3 text-green-500 mr-1"></i><span class="text-green-500">Number</span>';
-            } else {
-                number.innerHTML = '<i data-lucide="x" class="w-3 h-3 text-red-500 mr-1"></i><span class="text-red-500">Number</span>';
-            }
-
-            lucide.createIcons();
-        });
-
-        // Handle form submission
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
-            
-            // Simulate signup process
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            
-            submitBtn.textContent = 'Creating Account...';
-            submitBtn.disabled = true;
-            
-            setTimeout(() => {
-                alert('Account created successfully! Please check your email for verification.');
-                window.location.href = 'login.html';
-            }, 2000);
         });
     </script>
 </body>

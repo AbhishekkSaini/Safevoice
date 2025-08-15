@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <link rel="stylesheet" href="styles.css">
+    <script type="module" src="js/supabase-client.js"></script>
+    <script type="module" src="js/auth.js"></script>
 </head>
 <body class="font-sans bg-gradient-to-br from-slate-50 to-orange-50 min-h-screen flex items-center justify-center">
     <div class="max-w-md w-full mx-4">
@@ -93,36 +95,24 @@
     <script>
         lucide.createIcons();
 
-        // Toggle password visibility
-        document.getElementById('togglePassword').addEventListener('click', function() {
-            const password = document.getElementById('password');
-            const icon = this.querySelector('i');
-            
-            if (password.type === 'password') {
-                password.type = 'text';
-                icon.setAttribute('data-lucide', 'eye-off');
-            } else {
-                password.type = 'password';
-                icon.setAttribute('data-lucide', 'eye');
+        // Toggle password visibility (moved to auth.js, but keeping basic functionality here)
+        document.addEventListener('DOMContentLoaded', () => {
+            const togglePassword = document.getElementById('togglePassword');
+            if (togglePassword) {
+                togglePassword.addEventListener('click', function() {
+                    const password = document.getElementById('password');
+                    const icon = this.querySelector('i');
+                    
+                    if (password.type === 'password') {
+                        password.type = 'text';
+                        icon.setAttribute('data-lucide', 'eye-off');
+                    } else {
+                        password.type = 'password';
+                        icon.setAttribute('data-lucide', 'eye');
+                    }
+                    lucide.createIcons();
+                });
             }
-            lucide.createIcons();
-        });
-
-        // Handle form submission
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Simulate login process
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            
-            submitBtn.textContent = 'Signing In...';
-            submitBtn.disabled = true;
-            
-            setTimeout(() => {
-                alert('Login successful! Redirecting to dashboard...');
-                window.location.href = 'index.html';
-            }, 2000);
         });
     </script>
 </body>
