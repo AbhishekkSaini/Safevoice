@@ -1,1366 +1,518 @@
-<html lang="en" class="scroll-smooth"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AI-generated website">
-    <meta name="theme-color" content="#ffffff">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="robots" content="index, follow">
+    <title>SafeGuard Community - Emergency Response Platform</title>
+    <meta name="description" content="A comprehensive emergency response and community safety platform">
     
-    <!-- Performance optimization: Preload critical resources -->
-    <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Montserrat:wght@400;500;600;700&amp;display=swap" as="style">
-    
-    <!-- {headerScripts} -->
-
-    <!-- Core CSS -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="script.js"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="font-sans bg-gradient-to-br from-slate-50 to-orange-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white/90 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-orange-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
+                        <i data-lucide="shield-check" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                        SafeGuard Community
+                    </span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-orange-600 transition-colors font-medium">Home</a>
+                    <a href="#services" class="text-gray-700 hover:text-orange-600 transition-colors font-medium">Services</a>
+                    <a href="#emergency" class="text-gray-700 hover:text-orange-600 transition-colors font-medium">Emergency</a>
+                    <a href="#community" class="text-gray-700 hover:text-orange-600 transition-colors font-medium">Community</a>
+                    <a href="#contact" class="text-gray-700 hover:text-orange-600 transition-colors font-medium">Contact</a>
+                </div>
+
+                <!-- Auth Buttons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button id="loginBtn" class="px-4 py-2 text-orange-600 hover:text-orange-700 font-medium transition-colors">
+                        Login
+                    </button>
+                    <button id="signupBtn" class="px-6 py-2 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg hover:from-orange-600 hover:to-red-600 transition-all transform hover:scale-105 font-medium shadow-lg">
+                        Sign Up
+                    </button>
+                    <button id="logoutBtn" class="hidden px-4 py-2 text-gray-600 hover:text-gray-700 font-medium transition-colors">
+                        Logout
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                    <i data-lucide="menu" class="w-6 h-6 text-gray-700"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden py-4 border-t border-gray-200">
+                <div class="flex flex-col space-y-4">
+                    <a href="#home" class="text-gray-700 hover:text-orange-600 transition-colors font-medium">Home</a>
+                    <a href="#services" class="text-gray-700 hover:text-orange-600 transition-colors font-medium">Services</a>
+                    <a href="#emergency" class="text-gray-700 hover:text-orange-600 transition-colors font-medium">Emergency</a>
+                    <a href="#community" class="text-gray-700 hover:text-orange-600 transition-colors font-medium">Community</a>
+                    <a href="#contact" class="text-gray-700 hover:text-orange-600 transition-colors font-medium">Contact</a>
+                    <div class="flex flex-col space-y-2 pt-4 border-t border-gray-200">
+                        <button id="mobileLoginBtn" class="text-left text-orange-600 hover:text-orange-700 font-medium transition-colors">
+                            Login
+                        </button>
+                        <button id="mobileSignupBtn" class="text-left px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg hover:from-orange-600 hover:to-red-600 transition-all font-medium">
+                            Sign Up
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative py-20 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-orange-100/50 to-red-100/50"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 animate__animated animate__fadeInUp">
+                    <span class="bg-gradient-to-r from-orange-600 via-red-600 to-orange-600 bg-clip-text text-transparent">
+                        Emergency Response
+                    </span>
+                    <br>
+                    <span class="text-gray-800">Made Simple</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto animate__animated animate__fadeInUp animate__delay-1s">
+                    Connect with your community, access emergency services instantly, and stay safe with our comprehensive safety platform.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center animate__animated animate__fadeInUp animate__delay-2s">
+                    <button id="sosBtn" class="px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-xl font-bold text-lg hover:from-red-600 hover:to-red-700 transition-all transform hover:scale-105 shadow-xl">
+                        🚨 Emergency SOS
+                    </button>
+                    <button class="px-8 py-4 bg-white text-gray-800 rounded-xl font-semibold text-lg hover:bg-gray-50 transition-all transform hover:scale-105 shadow-lg border border-gray-200">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                    Our <span class="text-orange-600">Services</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Comprehensive safety solutions designed to protect and connect communities
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Emergency Response -->
+                <div class="group bg-gradient-to-br from-red-50 to-orange-50 p-8 rounded-2xl hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-red-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="phone-call" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Emergency Response</h3>
+                    <p class="text-gray-600 mb-6">Instant connection to emergency services with GPS location sharing and real-time updates.</p>
+                    <button class="text-red-600 font-semibold hover:text-red-700 transition-colors flex items-center">
+                        Learn More <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </button>
+                </div>
+
+                <!-- Community Network -->
+                <div class="group bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-2xl hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-blue-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="users" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Community Network</h3>
+                    <p class="text-gray-600 mb-6">Connect with neighbors, share safety alerts, and build a stronger, safer community together.</p>
+                    <button class="text-blue-600 font-semibold hover:text-blue-700 transition-colors flex items-center">
+                        Learn More <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </button>
+                </div>
+
+                <!-- Safety Resources -->
+                <div class="group bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-2xl hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-green-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="book-open" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Safety Resources</h3>
+                    <p class="text-gray-600 mb-6">Access comprehensive safety guides, emergency preparedness tips, and educational materials.</p>
+                    <button class="text-green-600 font-semibold hover:text-green-700 transition-colors flex items-center">
+                        Learn More <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </button>
+                </div>
+
+                <!-- Real-time Alerts -->
+                <div class="group bg-gradient-to-br from-purple-50 to-violet-50 p-8 rounded-2xl hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-purple-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-violet-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="bell" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Real-time Alerts</h3>
+                    <p class="text-gray-600 mb-6">Receive instant notifications about local emergencies, weather alerts, and safety updates.</p>
+                    <button class="text-purple-600 font-semibold hover:text-purple-700 transition-colors flex items-center">
+                        Learn More <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </button>
+                </div>
+
+                <!-- Medical Assistance -->
+                <div class="group bg-gradient-to-br from-pink-50 to-rose-50 p-8 rounded-2xl hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-pink-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="heart" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Medical Assistance</h3>
+                    <p class="text-gray-600 mb-6">Quick access to medical professionals, first aid guidance, and health emergency support.</p>
+                    <button class="text-pink-600 font-semibold hover:text-pink-700 transition-colors flex items-center">
+                        Learn More <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </button>
+                </div>
+
+                <!-- 24/7 Support -->
+                <div class="group bg-gradient-to-br from-yellow-50 to-amber-50 p-8 rounded-2xl hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-yellow-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-amber-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="clock" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">24/7 Support</h3>
+                    <p class="text-gray-600 mb-6">Round-the-clock assistance and support whenever you need help or have questions.</p>
+                    <button class="text-yellow-600 font-semibold hover:text-yellow-700 transition-colors flex items-center">
+                        Learn More <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Guidelines Section -->
+    <section id="emergency" class="py-20 bg-gradient-to-br from-gray-50 to-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                    Emergency <span class="text-red-600">Guidelines</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Essential steps to follow during different types of emergencies
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Fire Emergency -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-red-500">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                            <i data-lucide="flame" class="w-6 h-6 text-red-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Fire Emergency</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            Stay low and crawl under smoke
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            Feel doors before opening
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            Call 911 once you're safe
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            Never go back inside
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Medical Emergency -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-blue-500">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <i data-lucide="activity" class="w-6 h-6 text-blue-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Medical Emergency</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            Check for responsiveness
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            Call 911 immediately
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            Provide first aid if trained
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            Stay with the person
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Natural Disaster -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-green-500">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                            <i data-lucide="cloud-rain" class="w-6 h-6 text-green-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Natural Disaster</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            Follow evacuation orders
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            Grab emergency kit
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            Stay informed via radio
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            Avoid flooded areas
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                    Community <span class="text-orange-600">Stories</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Real stories from community members who have benefited from our platform
+                </p>
+            </div>
+
+            <div class="relative">
+                <!-- Testimonial Slides -->
+                <div class="testimonial-slide bg-gradient-to-br from-orange-50 to-red-50 p-8 md:p-12 rounded-2xl shadow-lg">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-500 rounded-full mx-auto mb-6 flex items-center justify-center">
+                            <i data-lucide="quote" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <blockquote class="text-2xl md:text-3xl text-gray-800 mb-8 font-medium leading-relaxed">
+                            "SafeGuard Community helped me connect with my neighbors during the recent storm. The real-time alerts and community support made all the difference."
+                        </blockquote>
+                        <div class="flex items-center justify-center">
+                            <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop" alt="Sarah Johnson" class="w-16 h-16 rounded-full mr-4 object-cover">
+                            <div class="text-left">
+                                <p class="font-semibold text-gray-800">Sarah Johnson</p>
+                                <p class="text-gray-600">Community Member</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-slide hidden bg-gradient-to-br from-blue-50 to-indigo-50 p-8 md:p-12 rounded-2xl shadow-lg">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full mx-auto mb-6 flex items-center justify-center">
+                            <i data-lucide="quote" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <blockquote class="text-2xl md:text-3xl text-gray-800 mb-8 font-medium leading-relaxed">
+                            "The emergency response feature saved my father's life. Within minutes, help arrived thanks to the GPS location sharing and instant alerts."
+                        </blockquote>
+                        <div class="flex items-center justify-center">
+                            <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop" alt="Michael Chen" class="w-16 h-16 rounded-full mr-4 object-cover">
+                            <div class="text-left">
+                                <p class="font-semibold text-gray-800">Michael Chen</p>
+                                <p class="text-gray-600">Family Caregiver</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-slide hidden bg-gradient-to-br from-green-50 to-emerald-50 p-8 md:p-12 rounded-2xl shadow-lg">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full mx-auto mb-6 flex items-center justify-center">
+                            <i data-lucide="quote" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <blockquote class="text-2xl md:text-3xl text-gray-800 mb-8 font-medium leading-relaxed">
+                            "As a first responder, I love how this platform helps us coordinate better with the community and respond more effectively to emergencies."
+                        </blockquote>
+                        <div class="flex items-center justify-center">
+                            <img src="https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop" alt="Emma Rodriguez" class="w-16 h-16 rounded-full mr-4 object-cover">
+                            <div class="text-left">
+                                <p class="font-semibold text-gray-800">Emma Rodriguez</p>
+                                <p class="text-gray-600">Emergency Responder</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slider Dots -->
+                <div class="flex justify-center mt-8 space-x-3">
+                    <button class="slider-dot w-3 h-3 rounded-full bg-orange-500 transition-colors"></button>
+                    <button class="slider-dot w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-colors"></button>
+                    <button class="slider-dot w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-colors"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gradient-to-br from-gray-900 to-slate-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    Get In <span class="text-orange-400">Touch</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    Have questions or need support? We're here to help 24/7
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Contact Info -->
+                <div class="space-y-8">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center">
+                            <i data-lucide="phone" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Emergency Hotline</h3>
+                            <p class="text-gray-300">1-800-SAFEGUARD (24/7)</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center">
+                            <i data-lucide="mail" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Email Support</h3>
+                            <p class="text-gray-300">support@safeguardcommunity.com</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center">
+                            <i data-lucide="map-pin" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Headquarters</h3>
+                            <p class="text-gray-300">123 Safety Street, Emergency City, EC 12345</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl">
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="Your name">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="your@email.com">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent resize-none" placeholder="How can we help you?"></textarea>
+                        </div>
+                        <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg font-semibold hover:from-orange-600 hover:to-red-600 transition-all transform hover:scale-105">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Logo and Description -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
+                            <i data-lucide="shield-check" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <span class="text-xl font-bold">SafeGuard Community</span>
+                    </div>
+                    <p class="text-gray-400 mb-6 max-w-md">
+                        Building safer communities through technology, connection, and rapid emergency response.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-orange-500 transition-colors">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-orange-500 transition-colors">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-orange-500 transition-colors">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="#emergency" class="text-gray-400 hover:text-white transition-colors">Emergency</a></li>
+                        <li><a href="#community" class="text-gray-400 hover:text-white transition-colors">Community</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Safety Tips</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400">
+                    © 2025 SafeGuard Community. All rights reserved. Built with ❤️ for safer communities.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scipt.js"></script>
     <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-           colors: {
-              primary: {
-                50: '#f8f8f8',
-                100: '#e8e8e8',
-                200: '#d3d3d3',
-                300: '#a3a3a3',
-                400: '#737373',
-                500: '#525252',
-                600: '#404040',
-                700: '#262626',
-                800: '#171717',
-                900: '#0a0a0a',
-                950: '#030303',
-              },
-              secondary: {
-                50: '#f8f8f8',
-                100: '#e8e8e8',
-                200: '#d3d3d3',
-                300: '#a3a3a3',
-                400: '#737373',
-                500: '#525252',
-                600: '#404040',
-                700: '#262626',
-                800: '#171717',
-                900: '#0a0a0a',
-                950: '#030303',
-              },
-              accent: {
-                50: '#f8f8f8',
-                100: '#e8e8e8',
-                200: '#d3d3d3',
-                300: '#a3a3a3',
-                400: '#737373',
-                500: '#525252',
-                600: '#404040',
-                700: '#262626',
-                800: '#171717',
-                900: '#0a0a0a',
-                950: '#030303',
-              },
-            },
-            fontFamily: {
-              sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
-              heading: ['Montserrat', 'Inter', 'system-ui', 'sans-serif'],
-            },
-            spacing: {
-              '18': '4.5rem',
-              '22': '5.5rem',
-              '30': '7.5rem',
-            },
-            maxWidth: {
-              '8xl': '88rem',
-              '9xl': '96rem',
-            },
-            animation: {
-              'fade-in': 'fadeIn 0.5s ease-in',
-              'fade-out': 'fadeOut 0.5s ease-out',
-              'slide-up': 'slideUp 0.5s ease-out',
-              'slide-down': 'slideDown 0.5s ease-out',
-              'slide-left': 'slideLeft 0.5s ease-out',
-              'slide-right': 'slideRight 0.5s ease-out',
-              'scale-in': 'scaleIn 0.5s ease-out',
-              'scale-out': 'scaleOut 0.5s ease-out',
-              'spin-slow': 'spin 3s linear infinite',
-              'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-              'bounce-slow': 'bounce 3s infinite',
-              'float': 'float 3s ease-in-out infinite',
-            },
-            keyframes: {
-              fadeIn: {
-                '0%': { opacity: '0' },
-                '100%': { opacity: '1' },
-              },
-              fadeOut: {
-                '0%': { opacity: '1' },
-                '100%': { opacity: '0' },
-              },
-              slideUp: {
-                '0%': { transform: 'translateY(20px)', opacity: '0' },
-                '100%': { transform: 'translateY(0)', opacity: '1' },
-              },
-              slideDown: {
-                '0%': { transform: 'translateY(-20px)', opacity: '0' },
-                '100%': { transform: 'translateY(0)', opacity: '1' },
-              },
-              slideLeft: {
-                '0%': { transform: 'translateX(20px)', opacity: '0' },
-                '100%': { transform: 'translateX(0)', opacity: '1' },
-              },
-              slideRight: {
-                '0%': { transform: 'translateX(-20px)', opacity: '0' },
-                '100%': { transform: 'translateX(0)', opacity: '1' },
-              },
-              scaleIn: {
-                '0%': { transform: 'scale(0.9)', opacity: '0' },
-                '100%': { transform: 'scale(1)', opacity: '1' },
-              },
-              scaleOut: {
-                '0%': { transform: 'scale(1.1)', opacity: '0' },
-                '100%': { transform: 'scale(1)', opacity: '1' },
-              },
-              float: {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-10px)' },
-              },
-            },
-            aspectRatio: {
-              'portrait': '3/4',
-              'landscape': '4/3',
-              'ultrawide': '21/9',
-            },
-          },
-        },
-        variants: {
-          extend: {
-            opacity: ['disabled'],
-            cursor: ['disabled'],
-            backgroundColor: ['active', 'disabled'],
-            textColor: ['active', 'disabled'],
-          },
-        },
-      }
+        // Initialize Lucide icons
+        lucide.createIcons();
     </script>
-
-    <!-- Utilities and Components -->
-    <script defer="" src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.min.js"></script>
-    </script>
-    
-    <!-- Optimized Font Loading -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Montserrat:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
-
-    <!-- Base Styles -->
-    <style>
-
-    * {
--ms-overflow-style: none;  /* IE and Edge */
-scrollbar-width: none;     /* Firefox */
-}
-
-/* Webkit browsers like Chrome, Safari, newer Edge */
-*::-webkit-scrollbar {
-display: none;
-width: 0;
-height: 0;
-}
-      /* Custom scrollbar */
-      ::-webkit-scrollbar {
-        width: 0px;
-      }
-      
-      ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 4px;
-      }
-      
-      ::-webkit-scrollbar-thumb {
-        background: #888;
-        border-radius: 4px;
-      }
-      
-      ::-webkit-scrollbar-thumb:hover {
-        background: #666;
-      }
-
-      /* Remove tap highlight on mobile */
-      * {
-        -webkit-tap-highlight-color: transparent;
-      }
-
-      /* Improve text rendering */
-      body {
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-
-      /* Focus outline styles */
-      :focus-visible {
-        outline: 2px solid currentColor;
-        outline-offset: 2px;
-      }
-
-      /* Print styles */
-      @media print {
-        .no-print {
-          display: none !important;
-        }
-        
-        a[href]:after {
-          content: " (" attr(href) ")";
-        }
-      }
-    </style>
-
-    <!-- Enhanced Image Handler -->
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const img = entry.target;
-              if (img.dataset.src) {
-                const tempImage = new Image();
-                tempImage.onload = () => {
-                  img.src = img.dataset.src;
-                  img.classList.remove('opacity-0');
-                  img.classList.add('opacity-100');
-                };
-                tempImage.src = img.dataset.src;
-                img.removeAttribute('data-src');
-                observer.unobserve(img);
-              }
-            }
-          });
-        }, {
-          rootMargin: '50px 0px',
-          threshold: 0.01
-        });
-
-        const loadImage = (img) => {
-          if ('loading' in HTMLImageElement.prototype) {
-            img.loading = 'lazy';
-          }
-          
-          img.classList.add('transition-opacity', 'duration-300', 'opacity-0');
-          
-          img.onerror = () => {
-            const width = img.getAttribute('width') || img.clientWidth || 300;
-            const height = img.getAttribute('height') || img.clientHeight || 200;
-            img.src = `https://placehold.co/${width}x${height}/DEDEDE/555555?text=Image+Unavailable`;
-            img.alt = 'Image unavailable';
-            img.classList.remove('opacity-0');
-            img.classList.add('opacity-100', 'error-image');
-          };
-
-          if (img.dataset.src) {
-            imageObserver.observe(img);
-          } else {
-            img.classList.remove('opacity-0');
-            img.classList.add('opacity-100');
-          }
-        };
-
-        document.querySelectorAll('img[data-src], img:not([data-src])').forEach(loadImage);
-
-        // Watch for dynamically added images
-        new MutationObserver((mutations) => {
-          mutations.forEach(mutation => {
-            mutation.addedNodes.forEach(node => {
-              if (node.nodeType === 1) {
-                if (node.tagName === 'IMG') {
-                  loadImage(node);
-                }
-                node.querySelectorAll('img').forEach(loadImage);
-              }
-            });
-          });
-        }).observe(document.body, {
-          childList: true,
-          subtree: true
-        });
-      });
-
-      // Performance monitoring
-      if ('performance' in window && 'PerformanceObserver' in window) {
-        // Create performance observer
-        const observer = new PerformanceObserver((list) => {
-          const entries = list.getEntries();
-          entries.forEach((entry) => {
-            if (entry.entryType === 'largest-contentful-paint') {
-              // console.log(`LCP: ${entry.startTime}ms`);
-            }
-            if (entry.entryType === 'first-input') {
-              // console.log(`FID: ${entry.processingStart - entry.startTime}ms`);
-            }
-            if (entry.entryType === 'layout-shift') {
-              // console.log(`CLS: ${entry.value}`);
-            }
-          });
-        });
-
-        // Observe performance metrics
-        observer.observe({ entryTypes: ['largest-contentful-paint', 'first-input', 'layout-shift'] });
-
-        // Log basic performance metrics
-        window.addEventListener('load', () => {
-          const timing = performance.getEntriesByType('navigation')[0];
-          console.log({
-            'DNS Lookup': timing.domainLookupEnd - timing.domainLookupStart,
-            'TCP Connection': timing.connectEnd - timing.connectStart,
-            'DOM Content Loaded': timing.domContentLoadedEventEnd - timing.navigationStart,
-            'Page Load': timing.loadEventEnd - timing.navigationStart
-          });
-        });
-      }
-
-      // Handle offline/online status
-      window.addEventListener('online', () => {
-        document.body.classList.remove('offline');
-        console.log('Connection restored');
-      });
-      
-      window.addEventListener('offline', () => {
-        document.body.classList.add('offline');
-        console.log('Connection lost');
-      });
-    </script>
- </head>
- <body class="antialiased text-gray-800 min-h-screen flex flex-col">
-    <!-- Skip to main content link for accessibility -->
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:p-4 focus:bg-white focus:text-black">
-       Skip to main content
-    </a>
-
-    <!-- Header -->
-    <header class="relative z-50 bg-white dark:bg-gray-900">
-      <!-- Header content goes here -->
-    </header>
-
-    <!-- Main content area -->
-    <main id="main-content" class="flex-1 relative ">
-      <!-- Content will be injected here -->
-    </main>
-
-    <!-- {bodyScripts} -->
-
-
- 
-<element id="503adc3e-a2e2-4562-bdce-e7aaab51fdbd" data-section-id="503adc3e-a2e2-4562-bdce-e7aaab51fdbd">
-
-<div id="root">
-<nav id="navbar" class="bg-orange-50 text-gray-900 fixed w-full z-50 shadow-md">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
-      <!-- Logo -->
-      <div class="flex-shrink-0 animate__animated animate__fadeIn">
-        <a href="#hero" class="flex items-center">
-          <span class="text-2xl font-bold text-orange-600" style="font-family: 'Rajdhani', sans-serif;">Safe</span>
-          <span class="text-2xl font-bold ml-1 text-red-600" style="font-family: 'Rajdhani', sans-serif;">Voice</span>
-        </a>
-      </div>
-    
-      <!-- Desktop Menu -->
-      <div class="hidden md:flex items-center space-x-6">
-        <a href="#featuredStories" class="hover:text-orange-600 px-3 py-2 text-sm font-medium">Stories</a>
-        <a href="#howItWorks" class="hover:text-orange-600 px-3 py-2 text-sm font-medium">How It Works</a>
-        <a href="#categories" class="hover:text-orange-600 px-3 py-2 text-sm font-medium">Categories</a>
-        <a href="#communityGuidelines" class="hover:text-orange-600 px-3 py-2 text-sm font-medium">Guidelines</a>
-
-        <!-- Authentication Buttons -->
-        <button id="loginBtn" class="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-md">Login</button>
-        <button id="signupBtn" class="bg-gray-200 hover:bg-gray-300 text-gray-900 px-4 py-2 rounded-md">Sign Up</button>
-        <button id="logoutBtn" class="hidden bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md">Logout</button>
-
-        <!-- SOS Button -->
-        <button id="sosBtn" class="relative bg-red-600 hover:bg-red-700 px-6 py-3 rounded-full text-white font-bold text-lg transition-all duration-300 animate__animated animate__pulse animate__infinite flex items-center gap-2 shadow-lg border-2 border-orange-200">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
-          </svg>
-          SOS
-        </button>
-      </div>
-      
-
-      <!-- Mobile Menu -->
-      <div class="md:hidden">
-        <button id="menuBtn" class="p-2 rounded-md hover:text-orange-600 hover:bg-orange-100">
-          <svg id="menuIcon" class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Mobile Menu -->
-  <div id="mobileMenu" class="hidden md:hidden bg-orange-50 border-t border-orange-200">
-    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-      <a href="#featuredStories" class="block px-3 py-2 rounded-md text-base font-medium hover:text-orange-600 hover:bg-orange-100">Stories</a>
-      <a href="#howItWorks" class="block px-3 py-2 rounded-md text-base font-medium hover:text-orange-600 hover:bg-orange-100">How It Works</a>
-      <a href="#categories" class="block px-3 py-2 rounded-md text-base font-medium hover:text-orange-600 hover:bg-orange-100">Categories</a>
-      <a href="#communityGuidelines" class="block px-3 py-2 rounded-md text-base font-medium hover:text-orange-600 hover:bg-orange-100">Guidelines</a>
-      <button class="w-full text-left bg-red-600 hover:bg-red-700 px-3 py-2 rounded-md text-white text-base font-bold">SOS</button>
-    </div>
-  </div>
-</nav>
-
-
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap');
-</style>
-
-<script>
-  const menuBtn = document.getElementById('menuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const sosBtn = document.getElementById('sosBtn');
-
-  menuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-  });
-
-  sosBtn.addEventListener('click', () => {
-    sosBtn.classList.add('animate__headShake');
-    setTimeout(() => {
-      sosBtn.classList.remove('animate__headShake');
-    }, 1000);
-    // Add SOS functionality here
-  });
-
-  // Close mobile menu when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!menuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
-      mobileMenu.classList.add('hidden');
-    }
-  });
-</script>
-</div></element><element id="91e7f0f7-83e0-46f4-a429-816078b0dd70" data-section-id="91e7f0f7-83e0-46f4-a429-816078b0dd70">
-
-<div id="root">
-<section id="hero" class="bg-gradient-to-br from-orange-50 to-red-50 text-gray-900 min-h-[70vh] pt-16">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
-      <div class="space-y-8 animate__animated animate__fadeInLeft">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-sanskrit">
-          
-           Your Story,
-          <span class="text-orange-600">Safely</span> and
-          <span class="text-orange-600">Anonymously</span>
-        </h1>
-        <p class="text-lg md:text-xl text-gray-700">
-          A sacred space to share your experiences, connect with others, and find support - all while maintaining your privacy.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4">
-          <div class="text-center">
-            
-          <button class="bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 animate__animated animate__pulse animate__infinite border-2 border-orange-300" onclick="openStoryEditor()">
-            <a href="https://idyllic-marigold-33655a.netlify.app/">Share Your Story</a>
-            </button>
-
-            <!-- Story Editor Modal -->
-            <div id="storyEditorModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
-              <div class="bg-white rounded-lg p-6 w-full max-w-2xl mx-4 border-2 border-orange-200">
-                <div class="flex justify-between items-center mb-4">
-                  <h3 class="text-xl font-semibold text-gray-900 font-sanskrit">Share Your Story</h3>
-                  <button onclick="closeStoryEditor()" class="text-gray-500 hover:text-gray-700">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                  </button>
-                </div>
-                <div class="mb-4">
-                  <textarea id="storyEditor" class="w-full h-64 p-4 border-2 border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent resize-none" placeholder="Write your story here..."></textarea>
-                </div>
-                <div class="flex justify-end space-x-3">
-                  <button onclick="closeStoryEditor()" class="px-4 py-2 text-gray-600 hover:text-gray-800 font-medium">
-                    Cancel
-                  </button>
-                  <button onclick="submitStory()" class="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2 rounded-lg font-medium transition-colors border-2 border-orange-300">
-                    Submit Story
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <button class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 border-2 border-red-300">
-            <a href="https://idyllic-marigold-33655a.netlify.app/read.html">Read Stories</a>
-          </button>
-        </div>
-        <div class="flex items-center gap-4 text-sm text-gray-700">
-          <div class="flex items-center">
-            <svg class="w-5 h-5 text-orange-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-2a6 6 0 100-12 6 6 0 000 12zm-1-5a1 1 0 011-1h2a1 1 0 110 2h-2a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-            </svg>
-            <span>100% Anonymous</span>
-          </div>
-          <div class="flex items-center">
-            <svg class="w-5 h-5 text-orange-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-            </svg>
-            <span>Safe &amp; Secure</span>
-          </div>
-        </div>
-      </div>
-      <div class="relative animate__animated animate__fadeInRight">
-        <div class="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-2xl"></div>
-        <div class="relative bg-orange-50 p-8 rounded-2xl border-2 border-orange-200">
-          <div class="space-y-6">
-            <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center">
-                <svg class="w-6 h-6 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
-                </svg>
-              </div>
-              <div class="flex-1 space-y-2">
-                <div class="h-4 bg-orange-100 rounded w-3/4"></div>
-                <div class="h-4 bg-orange-100 rounded w-1/2"></div>
-              </div>
-            </div>
-            <div class="space-y-2">
-              <div class="h-4 bg-orange-100 rounded"></div>
-              <div class="h-4 bg-orange-100 rounded"></div>
-              <div class="h-4 bg-orange-100 rounded w-2/3"></div>
-            </div>
-            <div class="flex gap-4">
-              <div class="h-8 bg-orange-100 rounded w-20"></div>
-              <div class="h-8 bg-orange-100 rounded w-20"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-</div></element><element id="f1665d5b-b630-4593-b77e-2fbac40b0892" data-section-id="f1665d5b-b630-4593-b77e-2fbac40b0892">
-
-<section id="featuredStories" class="bg-orange-50 py-20">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div class="text-center mb-12 animate__animated animate__fadeIn">
-    <h2 class="text-3xl md:text-4xl font-bold text-orange-800 mb-4" style="font-family: 'Rajdhani', sans-serif;">Featured Stories</h2>
-    <p class="text-gray-600" style="font-family: 'Poppins', sans-serif;">Real incidents shared by survivors</p>
-  </div>
-
-  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <!-- Story Card 1 -->
-    <div class="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-lg p-6 transition-transform hover:-translate-y-2 animate__animated animate__fadeInUp shadow-lg border-2 border-orange-100">
-      <div class="flex justify-between items-start mb-4">
-        <div class="flex items-center">
-          <div class="w-10 h-10 rounded-full bg-orange-400 flex items-center justify-center">
-            <span class="text-white font-semibold">P</span>
-          </div>
-          <div class="ml-3">
-            <p class="text-orange-900 font-medium" style="font-family: 'Rajdhani', sans-serif;">Protected Identity</p>
-            <p class="text-sm text-gray-600">Delhi, 2023</p>
-          </div>
-        </div>
-        <button class="text-orange-500 hover:text-red-500" aria-label="More options">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
-          </svg>
-        </button>
-      </div>
-      <p class="text-gray-800 mb-4" style="font-family: 'Poppins', sans-serif;">I was returning from my evening tuition classes when it happened. Thanks to a nearby PCR van and alert citizens, the perpetrators were caught. The support from my family and NGO counselors helped me fight the legal battle. Today, I advocate for better street lighting and security in our area.</p>
-      <div class="flex items-center justify-between text-sm">
-        <div class="flex items-center space-x-4">
-          <button class="flex items-center text-orange-500 hover:text-red-500">
-            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"></path>
-            </svg>
-            <span>342</span>
-          </button>
-          <button class="flex items-center text-orange-500 hover:text-red-500">
-            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-            </svg>
-            <span>156</span>
-          </button>
-        </div>
-        <span class="text-orange-600 bg-orange-100 px-3 py-1 rounded-full">#Justice</span>
-      </div>
-    </div>
-
-    <!-- Story Card 2 -->
-    <div class="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-lg p-6 transition-transform hover:-translate-y-2 animate__animated animate__fadeInUp animate__delay-1s shadow-lg border-2 border-orange-100">
-      <div class="flex justify-between items-start mb-4">
-        <div class="flex items-center">
-          <div class="w-10 h-10 rounded-full bg-orange-400 flex items-center justify-center">
-            <span class="text-white font-semibold">S</span>
-          </div>
-          <div class="ml-3">
-            <p class="text-orange-900 font-medium" style="font-family: 'Rajdhani', sans-serif;">Survivor</p>
-            <p class="text-sm text-gray-600">Mumbai, 2022</p>
-          </div>
-        </div>
-        <button class="text-orange-500 hover:text-red-500" aria-label="More options">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
-          </svg>
-        </button>
-      </div>
-      <p class="text-gray-800 mb-4" style="font-family: 'Poppins', sans-serif;">It was my workplace, where I should have felt safe. After months of harassment, I finally gathered courage to file a complaint. The internal committee took strict action, and now our organization has stronger policies. Remember, silence only empowers the perpetrators.</p>
-      <div class="flex items-center justify-between text-sm">
-        <div class="flex items-center space-x-4">
-          <button class="flex items-center text-orange-500 hover:text-red-500">
-            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"></path>
-            </svg>
-            <span>428</span>
-          </button>
-          <button class="flex items-center text-orange-500 hover:text-red-500">
-            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-            </svg>
-            <span>234</span>
-          </button>
-        </div>
-        <span class="text-orange-600 bg-orange-100 px-3 py-1 rounded-full">#Workplace</span>
-      </div>
-    </div>
-
-    <!-- Story Card 3 -->
-    <div class="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-lg p-6 transition-transform hover:-translate-y-2 animate__animated animate__fadeInUp animate__delay-2s shadow-lg border-2 border-orange-100">
-      <div class="flex justify-between items-start mb-4">
-        <div class="flex items-center">
-          <div class="w-10 h-10 rounded-full bg-orange-400 flex items-center justify-center">
-            <span class="text-white font-semibold">R</span>
-          </div>
-          <div class="ml-3">
-            <p class="text-orange-900 font-medium" style="font-family: 'Rajdhani', sans-serif;">Rising Voice</p>
-            <p class="text-sm text-gray-600">Bangalore, 2023</p>
-          </div>
-        </div>
-        <button class="text-orange-500 hover:text-red-500" aria-label="More options">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
-          </svg>
-        </button>
-      </div>
-      <p class="text-gray-800 mb-4" style="font-family: 'Poppins', sans-serif;">I was drugged at a party by someone I trusted. The trauma left me broken, but with therapy and support groups, I'm rebuilding my life. Now I conduct awareness sessions about consent and safety in colleges. Your voice matters, speak up.</p>
-      <div class="flex items-center justify-between text-sm">
-        <div class="flex items-center space-x-4">
-          <button class="flex items-center text-orange-500 hover:text-red-500">
-            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"></path>
-            </svg>
-            <span>512</span>
-          </button>
-          <button class="flex items-center text-orange-500 hover:text-red-500">
-            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-            </svg>
-            <span>298</span>
-          </button>
-        </div>
-        <span class="text-orange-600 bg-orange-100 px-3 py-1 rounded-full">#Awareness</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="text-center mt-12">
-    <button class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-md" style="font-family: 'Rajdhani', sans-serif;">
-      View More Stories
-    </button>
-  </div>
-</div>
-
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Poppins:wght@400;500&display=swap');
-</style>
-
-<script>
-  document.querySelectorAll('.text-orange-500.hover\\:text-red-500').forEach(button => {
-    button.addEventListener('click', function() {
-      this.classList.toggle('text-red-500');
-      const countElement = this.querySelector('span');
-      let count = parseInt(countElement.textContent);
-      if (this.classList.contains('text-red-500')) {
-        countElement.textContent = count + 1;
-      } else {
-        countElement.textContent = count - 1;
-      }
-    });
-  });
-</script>
-</section></element><element id="017fc4d9-0da5-47ac-b1b6-205a228db3a4" data-section-id="017fc4d9-0da5-47ac-b1b6-205a228db3a4">
-
-<section id="howItWorks" class="bg-gradient-to-b from-orange-50 to-white py-20">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div class="text-center mb-16 animate__animated animate__fadeIn">
-    <h2 class="text-3xl md:text-4xl font-bold text-orange-800 mb-4" style="font-family: 'Rajdhani', sans-serif;">How Safe Voice Works</h2>
-    <p class="text-gray-700" style="font-family: 'Karma', serif;">Simple steps to share your story while staying anonymous</p>
-  </div>
-
-  <div class="grid md:grid-cols-3 gap-8">
-    <!-- Step 1 -->
-    <div class="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-xl p-8 text-center hover:shadow-2xl transition-all animate__animated animate__fadeInUp border-2 border-orange-100">
-      <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-        </svg>
-      </div>
-      <h3 class="text-xl font-bold text-orange-800 mb-4" style="font-family: 'Rajdhani', sans-serif;">Write Your Story</h3>
-      <p class="text-gray-700" style="font-family: 'Karma', serif;">Share your experience in a safe space. No personal information required. Your privacy is our priority.</p>
-      <div class="mt-6">
-        <button class="text-orange-600 hover:text-orange-700 font-medium flex items-center justify-center mx-auto group">
-          Learn More
-          <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Step 2 -->
-    <div class="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-xl p-8 text-center hover:shadow-2xl transition-all animate__animated animate__fadeInUp animate__delay-1s border-2 border-orange-100">
-      <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"></path>
-        </svg>
-      </div>
-      <h3 class="text-xl font-bold text-orange-800 mb-4" style="font-family: 'Rajdhani', sans-serif;">Stay Anonymous</h3>
-      <p class="text-gray-700" style="font-family: 'Karma', serif;">Our platform ensures your identity remains protected. Share freely without fear of exposure.</p>
-      <div class="mt-6">
-        <button class="text-orange-600 hover:text-orange-700 font-medium flex items-center justify-center mx-auto group">
-          Learn More
-          <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Step 3 -->
-    <div class="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-xl p-8 text-center hover:shadow-2xl transition-all animate__animated animate__fadeInUp animate__delay-2s border-2 border-orange-100">
-      <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path>
-        </svg>
-      </div>
-      <h3 class="text-xl font-bold text-orange-800 mb-4" style="font-family: 'Rajdhani', sans-serif;">Connect &amp; Support</h3>
-      <p class="text-gray-700" style="font-family: 'Karma', serif;">Engage with others through comments and upvotes. Build a supportive community together.</p>
-      <div class="mt-6">
-        <button class="text-orange-600 hover:text-orange-700 font-medium flex items-center justify-center mx-auto group">
-          Learn More
-          <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="mt-16 text-center">
-    <div class="bg-gradient-to-r from-orange-50 to-yellow-50 rounded-xl p-8 max-w-2xl mx-auto animate__animated animate__fadeIn relative border-2 border-orange-200">
-      <div class="absolute inset-0 rounded-xl border-2 border-orange-400 animate-[pulse_2s_ease-in-out_infinite]"></div>
-      
-      <h4 class="text-xl font-bold text-orange-800 mb-4 animate__animated animate__headShake animate__infinite animate__slower" style="font-family: 'Rajdhani', sans-serif;">Need Immediate Help?</h4>
-      
-      <p class="text-gray-700 mb-6" style="font-family: 'Karma', serif;">Our SOS feature connects you with immediate support and resources.</p>
-      
-      <button class="relative bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 group">
-        <span class="absolute inset-0 rounded-lg bg-white/30 animate-[ping_1s_cubic-bezier(0,0,0.2,1)_infinite]"></span>
-        <span class="relative inline-block animate-[pulse_1.5s_ease-in-out_infinite]">
-          Access Emergency Resources
-        </span>
-      </button>
-    </div>
-  </div>
-</div>
-
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Karma:wght@400;500&display=swap');
-  
-  @keyframes glow {
-    0%, 100% { text-shadow: 0 0 5px rgba(234,88,12,0.5); }
-    50% { text-shadow: 0 0 20px rgba(234,88,12,0.8); }
-  }
-</style>
-</section></element><element id="71437fe1-1a23-4663-b553-409ebfc93a04" data-section-id="71437fe1-1a23-4663-b553-409ebfc93a04">
-
-<section id="categories" class="bg-orange-50 py-20">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div class="text-center mb-16 animate__animated animate__fadeIn">
-    <h2 class="text-3xl md:text-4xl font-bold text-orange-800 mb-4" style="font-family: 'Rajdhani', sans-serif;">Story Categories</h2>
-    <p class="text-gray-700">Discover Stories That Echo Your Journey</p>
-  </div>
-
-  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <!-- Mental Health -->
-    <div class="group bg-gradient-to-br from-orange-50 to-yellow-50 rounded-xl p-6 hover:bg-orange-100 transition-all cursor-pointer animate__animated animate__fadeInUp border-2 border-orange-100">
-      <div class="flex items-center mb-4">
-        <div class="w-12 h-12 bg-orange-400 rounded-full flex items-center justify-center">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold text-orange-800 ml-4 group-hover:text-orange-600 transition-colors">Mental Wellness</h3>
-      </div>
-      <p class="text-gray-700 mb-4">Stories about inner peace, meditation, and emotional well-being.</p>
-      <span class="text-sm text-orange-600">2.4k stories</span>
-    </div>
-
-    <!-- Workplace Issues -->
-    <div class="group bg-gradient-to-br from-orange-50 to-yellow-50 rounded-xl p-6 hover:bg-orange-100 transition-all cursor-pointer animate__animated animate__fadeInUp animate__delay-1s border-2 border-orange-100">
-      <div class="flex items-center mb-4">
-        <div class="w-12 h-12 bg-orange-400 rounded-full flex items-center justify-center">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold text-orange-800 ml-4 group-hover:text-orange-600 transition-colors">Professional Growth</h3>
-      </div>
-      <p class="text-gray-700 mb-4">Stories of workplace challenges and professional development.</p>
-      <span class="text-sm text-orange-600">1.8k stories</span>
-    </div>
-
-    <!-- Personal Safety -->
-    <div class="group bg-gradient-to-br from-orange-50 to-yellow-50 rounded-xl p-6 hover:bg-orange-100 transition-all cursor-pointer animate__animated animate__fadeInUp animate__delay-2s border-2 border-orange-100">
-      <div class="flex items-center mb-4">
-        <div class="w-12 h-12 bg-orange-400 rounded-full flex items-center justify-center">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold text-orange-800 ml-4 group-hover:text-orange-600 transition-colors">Self-Protection</h3>
-      </div>
-      <p class="text-gray-700 mb-4">Stories about personal safety and empowerment journeys.</p>
-      <span class="text-sm text-orange-600">1.5k stories</span>
-    </div>
-
-    <!-- Relationships -->
-    <div class="group bg-gradient-to-br from-orange-50 to-yellow-50 rounded-xl p-6 hover:bg-orange-100 transition-all cursor-pointer animate__animated animate__fadeInUp border-2 border-orange-100">
-      <div class="flex items-center mb-4">
-        <div class="w-12 h-12 bg-orange-400 rounded-full flex items-center justify-center">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold text-orange-800 ml-4 group-hover:text-orange-600 transition-colors">Family &amp; Relations</h3>
-      </div>
-      <p class="text-gray-700 mb-4">Stories of family bonds and relationship wisdom.</p>
-      <span class="text-sm text-orange-600">2.1k stories</span>
-    </div>
-
-    <!-- Recovery -->
-    <div class="group bg-gradient-to-br from-orange-50 to-yellow-50 rounded-xl p-6 hover:bg-orange-100 transition-all cursor-pointer animate__animated animate__fadeInUp animate__delay-1s border-2 border-orange-100">
-      <div class="flex items-center mb-4">
-        <div class="w-12 h-12 bg-orange-400 rounded-full flex items-center justify-center">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold text-orange-800 ml-4 group-hover:text-orange-600 transition-colors">Healing Journey</h3>
-      </div>
-      <p class="text-gray-700 mb-4">Stories of spiritual and emotional healing.</p>
-      <span class="text-sm text-orange-600">1.9k stories</span>
-    </div>
-
-    <!-- Support Network -->
-    <div class="group bg-gradient-to-br from-orange-50 to-yellow-50 rounded-xl p-6 hover:bg-orange-100 transition-all cursor-pointer animate__animated animate__fadeInUp animate__delay-2s border-2 border-orange-100">
-      <div class="flex items-center mb-4">
-        <div class="w-12 h-12 bg-orange-400 rounded-full flex items-center justify-center">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold text-orange-800 ml-4 group-hover:text-orange-600 transition-colors">Community Support</h3>
-      </div>
-      <p class="text-gray-700 mb-4">Stories of community strength and collective wisdom.</p>
-      <span class="text-sm text-orange-600">1.3k stories</span>
-    </div>
-  </div>
-
-  <div class="text-center mt-12">
-    <button class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg">
-      Explore All Categories
-    </button>
-  </div>
-</div>
-
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap');
-</style>
-
-<script>
-  // Add hover effect for category cards
-  document.querySelectorAll('.group').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-      this.classList.add('animate__pulse');
-    });
-    card.addEventListener('mouseleave', function() {
-      this.classList.remove('animate__pulse');
-    });
-  });
-</script>
-</section></element><element id="514099fc-cded-44f3-8f8c-a613d7e2d0c9" data-section-id="514099fc-cded-44f3-8f8c-a613d7e2d0c9">
-
-<section id="communityGuidelines" class="bg-gradient-to-b from-orange-50 to-orange-100 py-20">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div class="text-center mb-16 animate__animated animate__fadeIn">
-    <h2 class="text-3xl md:text-4xl font-bold text-orange-800 mb-4" style="font-family: 'Rajdhani', sans-serif;">Community Guidelines</h2>
-    <p class="text-orange-700">A Safe and Supportive Environment for Everyone</p>
-  </div>
-
-  <div class="grid md:grid-cols-2 gap-12">
-    <div class="space-y-8 animate__animated animate__fadeInLeft">
-      <!-- Guideline Card 1 -->
-      <div class="bg-orange-50 rounded-xl p-6 hover:bg-orange-100 transition-all shadow-md border-2 border-orange-200">
-        <div class="flex items-start">
-          <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-            </svg>
-          </div>
-          <div class="ml-4">
-            <h3 class="text-xl font-bold text-orange-800 mb-2">Respect Privacy</h3>
-            <p class="text-orange-700">Maintain privacy and keep others' information secure</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Guideline Card 2 -->
-      <div class="bg-orange-50 rounded-xl p-6 hover:bg-orange-100 transition-all shadow-md border-2 border-orange-200">
-        <div class="flex items-start">
-          <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path>
-            </svg>
-          </div>
-          <div class="ml-4">
-            <h3 class="text-xl font-bold text-orange-800 mb-2">Supportive Communication</h3>
-            <p class="text-orange-700">Use supportive and positive communication</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Guideline Card 3 -->
-      <div class="bg-orange-50 rounded-xl p-6 hover:bg-orange-100 transition-all shadow-md border-2 border-orange-200">
-        <div class="flex items-start">
-          <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-            </svg>
-          </div>
-          <div class="ml-4">
-            <h3 class="text-xl font-bold text-orange-800 mb-2">Report Concerns</h3>
-            <p class="text-orange-700">Report concerns immediately</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="bg-orange-50 rounded-xl p-8 h-fit animate__animated animate__fadeInRight shadow-md border-2 border-orange-200">
-      <h3 class="text-2xl font-bold text-orange-800 mb-6">Community Pledge</h3>
-      <div class="space-y-4">
-        <div class="flex items-center">
-          <svg class="w-5 h-5 text-orange-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-          </svg>
-          <p class="text-orange-700">I will maintain privacy</p>
-        </div>
-        <div class="flex items-center">
-          <svg class="w-5 h-5 text-orange-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-          </svg>
-          <p class="text-orange-700">I will be respectful and supportive</p>
-        </div>
-        <div class="flex items-center">
-          <svg class="w-5 h-5 text-orange-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-          </svg>
-          <p class="text-orange-700">I will report harmful content</p>
-        </div>
-        <div class="flex items-center">
-          <svg class="w-5 h-5 text-orange-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-          </svg>
-          <p class="text-orange-700">I will promote growth and progress</p>
-        </div>
-      </div>
-
-      <div class="mt-8 p-6 bg-white rounded-lg shadow-inner">
-        <p class="text-orange-800 font-medium mb-4">Take the pledge to support our community</p>
-        <button class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition-all transform hover:scale-105 border-2 border-orange-600">
-          I Accept the Guidelines
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap');
-</style>
-
-<script>
-  // Add hover animation to guideline cards
-  document.querySelectorAll('.bg-orange-50').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-      this.classList.add('animate__pulse');
-    });
-    card.addEventListener('mouseleave', function() {
-      this.classList.remove('animate__pulse');
-    });
-  });
-</script>
-</section></element><element id="6ec5ef31-992a-4782-bae1-f03e6bf11be6" data-section-id="6ec5ef31-992a-4782-bae1-f03e6bf11be6">
-
-<section id="emergencyResources" class="bg-orange-50 py-20">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div class="text-center mb-16 animate__animated animate__fadeIn">
-    <div class="inline-block p-3 bg-orange-600 rounded-2xl mb-4">
-      <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-      </svg>
-    </div>
-    <h2 class="text-3xl md:text-4xl font-bold text-orange-800 mb-4" style="font-family: 'Rajdhani', sans-serif;">Emergency Resources</h2>
-    <p class="text-gray-600">24/7 immediate assistance available. You are not alone.</p>
-  </div>
-
-  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-    <!-- Emergency Hotline Card -->
-    <div class="bg-orange-50 rounded-xl p-6 border-2 border-red-400 animate__animated animate__fadeInUp shadow-lg" style="background-image: url('data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0V0zm10 17L4 7h12l-6 10z' fill='%23fff1e6' fill-opacity='0.4'/%3E%3C/svg%3E');">
-      <div class="flex items-center mb-4">
-        <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold text-orange-900 ml-4">Emergency Hotline</h3>
-      </div>
-      <p class="text-gray-600 mb-4">24/7 Crisis Support Line</p>
-      <a href="tel:112" class="flex items-center justify-center bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg font-bold transition-all animate__animated animate__pulse animate__infinite">
-        Call Now: 112
-      </a>
-    </div>
-
-    <!-- Online Chat Card -->
-    <div class="bg-orange-50 rounded-xl p-6 animate__animated animate__fadeInUp animate__delay-1s shadow-lg" style="background-image: url('data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0V0zm10 17L4 7h12l-6 10z' fill='%23fff1e6' fill-opacity='0.4'/%3E%3C/svg%3E');">
-      <div class="flex items-center mb-4">
-        <div class="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold text-orange-900 ml-4">Online Chat Support</h3>
-      </div>
-      <p class="text-gray-600 mb-4">Confidential Chat with Crisis Counselor</p>
-      <button class="w-full bg-orange-600 hover:bg-orange-700 text-white py-3 rounded-lg font-bold transition-all">
-        Start Chat
-      </button>
-    </div>
-
-    <!-- Resource Directory Card -->
-    <div class="bg-orange-50 rounded-xl p-6 animate__animated animate__fadeInUp animate__delay-2s shadow-lg" style="background-image: url('data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0V0zm10 17L4 7h12l-6 10z' fill='%23fff1e6' fill-opacity='0.4'/%3E%3C/svg%3E');">
-      <div class="flex items-center mb-4">
-        <div class="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold text-orange-900 ml-4">Resource Directory</h3>
-      </div>
-      <p class="text-gray-600 mb-4">Find Local Support Services</p>
-      <button class="w-full bg-orange-600 hover:bg-orange-700 text-white py-3 rounded-lg font-bold transition-all">
-        View Resources
-      </button>
-    </div>
-  </div>
-
-  <!-- Quick Access Panel -->
-  <div class="bg-orange-50 rounded-xl p-8 animate__animated animate__fadeIn shadow-lg" style="background-image: url('data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0V0zm10 17L4 7h12l-6 10z' fill='%23fff1e6' fill-opacity='0.4'/%3E%3C/svg%3E');">
-    <div class="grid md:grid-cols-2 gap-8">
-      <div>
-        <h4 class="text-xl font-bold text-orange-900 mb-4">Quick Emergency Steps</h4>
-        <ul class="space-y-3 text-gray-600">
-          <li class="flex items-center">
-            <svg class="w-5 h-5 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-            </svg>
-            Find a safe location immediately
-          </li>
-          <li class="flex items-center">
-            <svg class="w-5 h-5 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-            </svg>
-            Contact emergency services
-          </li>
-          <li class="flex items-center">
-            <svg class="w-5 h-5 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-            </svg>
-            Reach out to trusted contacts
-          </li>
-        </ul>
-      </div>
-      <div class="md:border-l md:border-orange-200 md:pl-8">
-        <h4 class="text-xl font-bold text-orange-900 mb-4">Download Safety App</h4>
-        <p class="text-gray-600 mb-4">Get instant access to emergency resources and location sharing.</p>
-        <div class="flex gap-4">
-          <button class="flex-1 bg-orange-100 hover:bg-orange-200 text-orange-900 py-3 rounded-lg font-bold transition-all">
-            iOS App
-          </button>
-          <button class="flex-1 bg-orange-100 hover:bg-orange-200 text-orange-900 py-3 rounded-lg font-bold transition-all">
-            Android App
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</section>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap');
-</style>
-
-<script>
-// Add hover animations
-document.querySelectorAll('.bg-orange-50').forEach(card => {
-  card.addEventListener('mouseenter', function() {
-    if (!this.classList.contains('border-red-400')) {
-      this.classList.add('animate__pulse');
-    }
-  });
-  card.addEventListener('mouseleave', function() {
-    this.classList.remove('animate__pulse');
-  });
-});
-</script></element><element id="8b35f3d7-4b9b-47aa-a8ae-1ed9810b2e2b" data-section-id="8b35f3d7-4b9b-47aa-a8ae-1ed9810b2e2b">
-
-<section id="testimonials" class="bg-orange-50 py-20">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div class="text-center mb-16 animate__animated animate__fadeIn">
-    <h2 class="text-3xl md:text-4xl font-bold text-orange-800 mb-4">Community Impact</h2>
-    <p class="text-gray-600">Real stories of healing and support from our community members</p>
-  </div>
-
-  <div class="grid lg:grid-cols-2 gap-8 mb-12">
-    <!-- Featured Testimonial -->
-    <div class="bg-amber-50 rounded-xl p-8 shadow-lg animate__animated animate__fadeInLeft border-2 border-orange-200">
-      <div class="flex items-center mb-6">
-        <div class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center">
-          <span class="text-white font-bold text-xl">S</span>
-        </div>
-        <div class="ml-4">
-          <p class="text-orange-900 font-semibold">SafeVoice Member</p>
-          <p class="text-sm text-gray-500">3 months ago</p>
-        </div>
-      </div>
-      <blockquote class="text-lg text-gray-700 mb-6">
-        "Finding this platform was a turning point in my journey. The anonymity gave me the courage to share my story for the first time. The support I received from the community was overwhelming and healing."
-      </blockquote>
-      <div class="flex items-center text-gray-500">
-        <span class="flex items-center">
-          <svg class="w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-          </svg>
-          <span class="ml-1">Impact Story</span>
-        </span>
-      </div>
-    </div>
-
-    <!-- Testimonials Carousel -->
-    <div class="bg-amber-50 rounded-xl p-8 relative overflow-hidden shadow-lg animate__animated animate__fadeInRight border-2 border-orange-200">
-      <div id="testimonialSlider" class="relative">
-        <div class="testimonial-slide">
-          <blockquote class="text-gray-700 mb-6">
-            "The emergency resources helped me during my darkest moment. I'm grateful for this supportive community."
-          </blockquote>
-          <div class="flex items-center">
-            <div class="w-10 h-10 rounded-full bg-orange-400 flex items-center justify-center">
-              <span class="text-white font-bold">A</span>
-            </div>
-            <div class="ml-3">
-              <p class="text-orange-900 font-semibold">Anonymous</p>
-              <p class="text-sm text-gray-500">1 month ago</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-slide hidden">
-          <blockquote class="text-gray-700 mb-6">
-            "Being able to share anonymously helped me take the first step towards healing. Thank you SafeVoice."
-          </blockquote>
-          <div class="flex items-center">
-            <div class="w-10 h-10 rounded-full bg-orange-400 flex items-center justify-center">
-              <span class="text-white font-bold">M</span>
-            </div>
-            <div class="ml-3">
-              <p class="text-orange-900 font-semibold">Member</p>
-              <p class="text-sm text-gray-500">2 weeks ago</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flex justify-center mt-6 space-x-2">
-        <button class="w-3 h-3 rounded-full bg-orange-300 slider-dot active"></button>
-        <button class="w-3 h-3 rounded-full bg-orange-300 slider-dot"></button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Community Stats -->
-  <div class="grid md:grid-cols-3 gap-8 animate__animated animate__fadeInUp">
-    <div class="bg-amber-50 rounded-xl p-6 text-center shadow-lg border-2 border-orange-200">
-      <div class="text-3xl font-bold text-orange-500 mb-2">10k+</div>
-      <p class="text-gray-600">Stories Shared</p>
-    </div>
-    <div class="bg-amber-50 rounded-xl p-6 text-center shadow-lg border-2 border-orange-200">
-      <div class="text-3xl font-bold text-orange-500 mb-2">50k+</div>
-      <p class="text-gray-600">Community Members</p>
-    </div>
-    <div class="bg-amber-50 rounded-xl p-6 text-center shadow-lg border-2 border-orange-200">
-      <div class="text-3xl font-bold text-orange-500 mb-2">24/7</div>
-      <p class="text-gray-600">Support Available</p>
-    </div>
-  </div>
-</div>
-
-<script>
-  // Testimonial Slider
-  const slides = document.querySelectorAll('.testimonial-slide');
-  const dots = document.querySelectorAll('.slider-dot');
-  let currentSlide = 0;
-
-  function showSlide(index) {
-    slides.forEach(slide => slide.classList.add('hidden'));
-    dots.forEach(dot => dot.classList.remove('bg-orange-500'));
-    
-    slides[index].classList.remove('hidden');
-    dots[index].classList.add('bg-orange-500');
-  }
-
-  // Auto rotate slides
-  setInterval(() => {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-  }, 5000);
-
-  // Click handlers for dots
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      currentSlide = index;
-      showSlide(currentSlide);
-    });
-  });
-
-  // Initialize first slide
-  showSlide(0);
-</script>
-</section></element><element id="de836616-225e-4a47-a4fc-8048bee87153" data-section-id="de836616-225e-4a47-a4fc-8048bee87153">
-
-<footer id="footer" class="bg-amber-50 pt-20 pb-10 shadow-lg">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-    <!-- Brand Section -->
-    <div class="space-y-6">
-      <div class="flex items-center">
-        <span class="text-2xl font-bold text-orange-600">Safe</span>
-        <span class="text-2xl font-bold text-red-600 ml-1">Voice</span>
-      </div>
-      <p class="text-gray-700">A safe space to share, heal, and support each other anonymously.</p>
-      <div class="flex space-x-4">
-        <a href="#" class="text-orange-400 hover:text-red-500 transition-colors">
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
-        </a>
-        <a href="#" class="text-orange-400 hover:text-red-500 transition-colors">
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.113.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path></svg>
-        </a>
-        <a href="#" class="text-orange-400 hover:text-red-500 transition-colors">
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
-        </a>
-      </div>
-    </div>
-
-    <!-- Quick Links -->
-    <div>
-      <h3 class="text-orange-600 font-bold mb-6 font-sanskrit">Quick Links</h3>
-      <ul class="space-y-4">
-        <li><a href="#hero" class="text-gray-700 hover:text-red-500 transition-colors">Home</a></li>
-        <li><a href="#featuredStories" class="text-gray-700 hover:text-red-500 transition-colors">Stories</a></li>
-        <li><a href="#howItWorks" class="text-gray-700 hover:text-red-500 transition-colors">How It Works</a></li>
-        <li><a href="#categories" class="text-gray-700 hover:text-red-500 transition-colors">Categories</a></li>
-      </ul>
-    </div>
-
-    <!-- Resources -->
-    <div>
-      <h3 class="text-orange-600 font-bold mb-6 font-sanskrit">Resources</h3>
-      <ul class="space-y-4">
-        <li><a href="#communityGuidelines" class="text-gray-700 hover:text-red-500 transition-colors">Community Guidelines</a></li>
-        <li><a href="#emergencyResources" class="text-gray-700 hover:text-red-500 transition-colors">Emergency Help</a></li>
-        <li><a href="#" class="text-gray-700 hover:text-red-500 transition-colors">Support Groups</a></li>
-        <li><a href="#" class="text-gray-700 hover:text-red-500 transition-colors">Mental Health Resources</a></li>
-      </ul>
-    </div>
-
-    <!-- Newsletter -->
-    <div>
-      <h3 class="text-orange-600 font-bold mb-6 font-sanskrit">Stay Updated</h3>
-      <p class="text-gray-700 mb-4">Get updates about new features and community stories.</p>
-      <form class="space-y-4">
-        <div class="relative">
-          <input type="email" placeholder="Enter your email" class="w-full bg-amber-100 text-gray-800 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500 border border-orange-100">
-        </div>
-        <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition-colors">
-          Subscribe
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <div class="border-t border-orange-100 pt-8">
-    <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-      <div class="text-gray-700 text-sm">
-        © 2024 SafeVoice. All rights reserved.
-      </div>
-      <div class="flex space-x-6 text-sm">
-        <a href="#" class="text-gray-700 hover:text-red-500 transition-colors">Privacy Policy</a>
-        <a href="#" class="text-gray-700 hover:text-red-500 transition-colors">Terms of Service</a>
-        <a href="#" class="text-gray-700 hover:text-red-500 transition-colors">Cookie Policy</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="mt-8 text-center text-sm text-orange-600 font-semibold">
-  <p>If you're in crisis, please call the Emergency Helpline: 112</p>
-</div>
-
-<style>
-  @font-face {
-    font-family: 'Sanskrit';
-    src: url('path-to-sanskrit-font.woff2') format('woff2');
-  }
-  .font-sanskrit {
-    font-family: 'Sanskrit', serif;
-  }
-</style>
-</footer>
-
-<script>
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
-    });
-  });
-});
-</script></element>
-          <div id="page_complete">
-          <script>
-              console.log('Page complete');
-          </script>
-          
-          
-        </div></body></html>
+</body>
+</html>
